@@ -1,21 +1,37 @@
-from calculator.operations import add, subtract, multiply, divide
+from decimal import Decimal
+from typing import Callable
 
-class SimpleCalculator:
-    @staticmethod
-    def add(a, b):
-        return add(a, b)
+# Define arithmetic operations as functions
+def add(a: Decimal, b: Decimal) -> Decimal:
+    """Addition operation."""
+    return a + b
 
-    @staticmethod
-    def subtract(a, b):
-        return subtract(a, b)
+def subtract(a: Decimal, b: Decimal) -> Decimal:
+    """Subtraction operation."""
+    return a - b
 
-    @staticmethod
-    def multiply(a, b):
-        return multiply(a, b)
+def multiply(a: Decimal, b: Decimal) -> Decimal:
+    """Multiplication operation."""
+    return a * b
 
-    @staticmethod
-    def divide(a, b):
-        if b != 0:
-            return divide(a, b)
-        else:
-            return "Cannot divide by zero"
+def divide(a: Decimal, b: Decimal) -> Decimal:
+    """Division operation."""
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
+
+# Define a function to perform a calculation
+def perform_operation(a: Decimal, b: Decimal, operation: Callable[[Decimal, Decimal], Decimal]) -> Decimal:
+    """Perform a calculation."""
+    return operation(a, b)
+
+# Example usage
+result_add = perform_operation(Decimal('5'), Decimal('3'), add)
+result_subtract = perform_operation(Decimal('5'), Decimal('3'), subtract)
+result_multiply = perform_operation(Decimal('5'), Decimal('3'), multiply)
+result_divide = perform_operation(Decimal('5'), Decimal('3'), divide)
+
+print("Addition:", result_add)
+print("Subtraction:", result_subtract)
+print("Multiplication:", result_multiply)
+print("Division:", result_divide)
