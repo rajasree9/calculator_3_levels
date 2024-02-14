@@ -1,0 +1,3 @@
+[submodule "projectSetup"]
+	path = projectSetup
+	url = git@github.com:rajasree9/projectSetup.git
